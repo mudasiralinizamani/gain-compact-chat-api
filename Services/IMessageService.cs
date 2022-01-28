@@ -18,7 +18,6 @@ public class IMessageService : IMessage
     MessageModel model = new()
     {
       CreatedAt = DateTime.Now,
-      Id = Guid.NewGuid().ToString(),
       Message = message,
       ReceiverId = receiverId,
       SenderId = senderId,
@@ -35,7 +34,7 @@ public class IMessageService : IMessage
     return await _context.Messages.ToListAsync<MessageModel>();
   }
 
-  public async Task<MessageModel?> FindByIdAsync(string id)
+  public async Task<MessageModel?> FindByIdAsync(int id)
   {
     ArgumentNullException.ThrowIfNull(id);
 
@@ -70,13 +69,4 @@ public class IMessageService : IMessage
     return await _context.Messages.Where(m => m.ReceiverId == receiverId && m.SenderId == senderId || m.ReceiverId == senderId && m.SenderId == receiverId).ToListAsync<MessageModel>();
   }
 
-  public MessageModel UpdateReply(MessageModel message, string reply)
-  {
-    ArgumentNullException.ThrowIfNull(reply);
-    ArgumentNullException.ThrowIfNull(message);
-
-    message.Reply = reply;
-    _context.SaveChanges();
-    return message;
-  }
 }

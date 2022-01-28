@@ -12,7 +12,7 @@ using gain_impact_chat_api.Data;
 namespace gain_impact_chat_api.Migrations.Api
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20220127095819_Messages Entity")]
+    [Migration("20220128102204_Messages Entity")]
     partial class MessagesEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,11 @@ namespace gain_impact_chat_api.Migrations.Api
 
             modelBuilder.Entity("gain_impact_chat_api.Models.MessageModel", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

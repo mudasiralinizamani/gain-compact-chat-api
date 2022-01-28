@@ -4,7 +4,7 @@ public interface IMessage
 {
   Task<MessageModel> CreateAsync(string message, string senderId, string receiverId);
 
-  Task<MessageModel?> FindByIdAsync(string id);
+  Task<MessageModel?> FindByIdAsync(int id);
 
   Task<IEnumerable<MessageModel>> FindBySenderIdAsync(string senderId);
 
@@ -13,8 +13,6 @@ public interface IMessage
   Task<IEnumerable<MessageModel>> FindMessages(string receiverId, string senderId);
 
   Task<IEnumerable<MessageModel>> FindAllMessages();
-
-  MessageModel UpdateReply(MessageModel message, string reply);
 
   Task<IEnumerable<MessageModel>> FindByUserId(string userId);
 }

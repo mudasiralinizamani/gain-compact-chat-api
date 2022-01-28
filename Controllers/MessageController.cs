@@ -101,26 +101,6 @@ public class MessageController : ControllerBase
     return Ok(await _messageService.FindMessages(receiver.Id, sender.Id));
   }
 
-  [HttpPut]
-  [Route("UpdateReply")]
-  public async Task<ActionResult<object>> UpdateMessageReply(UpdateMessageReplyDto dto)
-  {
-    try
-    {
-      MessageModel? message = await _messageService.FindByIdAsync(dto.MessageId);
-
-      if (message is null)
-        return BadRequest(new { code = "MessageNotFound", error = "Message is not found" });
-
-      MessageModel model = _messageService.UpdateReply(message, dto.Reply);
-      return Ok(new { succeeded = true, message = message });
-    }
-    catch (Exception)
-    {
-      return BadRequest(new { code = "ServerError", error = "Error occurred while updating reply" });
-    }
-  }
-
   [HttpGet]
   [Route("GetByUserId/{user_id}")]
   public async Task<ActionResult<object>> GetMessagesByUserId(string user_id)
