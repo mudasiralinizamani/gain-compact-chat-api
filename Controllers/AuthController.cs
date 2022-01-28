@@ -17,6 +17,7 @@ public class AuthController : ControllerBase
   [Route("Signup")]
   public async Task<ActionResult<object>> Signup(SignupDto dto)
   {
+    // Checking User Type, There are only 2 types of Role, Admin & User
     if (dto.Role != "Admin" && dto.Role != "User")
     {
       return BadRequest(new { code = "InvalidRole", error = "Role does not exists" });
@@ -29,9 +30,12 @@ public class AuthController : ControllerBase
       ProfilePic = dto.ProfilePic,
       Role = dto.Role,
       UserName = dto.Email,
+      CreatedAt = DateTime.Now,
+      UpdateAt = DateTime.Now,
     };
     try
     {
+      // Saving user in database
       var result = await _userManager.CreateAsync(user, dto.Password);
 
       if (!result.Succeeded)

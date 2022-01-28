@@ -5,3 +5,5 @@ global using System.ComponentModel.DataAnnotations;
 global using gain_impact_chat_api.Models;
 global using gain_impact_chat_api.Data;
 global using gain_impact_chat_api.Dtos;
+global using gain_impact_chat_api.Interfaces;
+global using gain_impact_chat_api.Services;

@@ -4,9 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Database Context
 builder.Services.AddDbContext<AuthContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<ApiContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
 
 // Dependency Injection
-
+builder.Services.AddScoped<IMessage, IMessageService>();
 
 // Identity is a library used to Handle Authentication in Dotnet apps.
 // I could create my own authentication system but that will take more time
