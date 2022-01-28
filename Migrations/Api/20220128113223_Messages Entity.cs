@@ -16,7 +16,6 @@ namespace gain_impact_chat_api.Migrations.Api
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Reply = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SenderId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceiverId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),

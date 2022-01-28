@@ -41,10 +41,6 @@ namespace gain_impact_chat_api.Migrations.Api
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Reply")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SenderId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
